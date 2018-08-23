@@ -1,0 +1,18 @@
+do {
+   get-aduser -filter * | select SamAccountName | ForEach-Object {
+   
+   if ($_.SamAccountName -eq $username) {
+   $username = $firstname+($lastname.Substring(0,$i))
+   
+   $i++
+   write-host $username
+   }
+   else {
+   $usernameexists = $false
+   
+   }
+  }
+}
+until ($usernameexists = $false)
+
+Write-Host "Username is $username" -ForegroundColor Green
