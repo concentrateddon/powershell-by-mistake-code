@@ -1,0 +1,37 @@
+function Test-ParameterSet
+{
+[CmdletBinding(
+DefaultParameterSetName = "all"
+)]
+Param
+(
+[Parameter(Mandatory = $false,
+Position = 0)]
+[ValidateNotNullorEmpty()]
+[String]$apiKey,
+[ValidateSet("Prod", "Dev")]
+[Parameter(Mandatory = $false)]
+$environment = "Dev",
+[Parameter(Mandatory = $false)]
+[int]$maxItems,
+[Parameter(Mandatory = $false,
+ParameterSetName = "all")]
+[switch]$all,
+[Parameter(Mandatory = $false,
+ParameterSetName = "byCustomerId")]
+[Parameter(ParameterSetName = "byId")]
+[Parameter(ParameterSetName = "byName")]
+[string]$customerId,
+[Parameter(Mandatory = $false,
+ParameterSetName = "byId")]
+[Parameter(ParameterSetName = "byCustomerId")]
+[string]$id,
+[Parameter(Mandatory = $false,
+ParameterSetName = "byName")]
+[Parameter(ParameterSetName = "byCustomerId")]
+[string]$name
+)
+
+Write-Output $PSCmdlet.ParameterSetName
+
+}
