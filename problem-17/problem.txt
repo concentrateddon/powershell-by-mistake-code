@@ -1,0 +1,7 @@
+$Userdata = Import-Csv C:\empID.csv
+ForEach ($User in $Userdata) {
+  $User = $User.User 
+  $Department = $Department.Department
+  Get-ADUser -Filter "EmployeeNumber -eq '$User'" -Properties * |
+  set-AdUser -Add "'$User' -eq 'Department'"  -Properties Department
+}
